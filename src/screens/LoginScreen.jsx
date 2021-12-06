@@ -5,16 +5,23 @@ import { Button, Colors, Headline, TextInput } from "react-native-paper";
 import Header from '../../src/components/Header';
 
 
-const LoginScreen = () => {
+const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isVisble, setIsVisible] = useState(true);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   
   
   function handleLogin() {
+    let message
+    if (email && password) {
+      message = 'Connected'
+    } else {
+      message = 'Enter email and password to connect'
+    }
+    setNotificationMessage(message);
     console.log("login");
-    
   }
 
 
@@ -26,11 +33,18 @@ const LoginScreen = () => {
     setIsVisible(!isVisble);
   }
 
+  function headerCmp() {
+    if (notificationMessage) {
+      return <Header>{notificationMessage}</Header>
+    } else {
+      return null
+    }
+  }
   return (
     <View>
       <View style={styles.header}>
-        <Header>Header custom</Header>
-        <Headline style={styles.headerText}>SpaceCraft</Headline>
+        { headerCmp() }
+        <Headline style={styles.headerText}>{props.title}</Headline>
       </View>
       <View style={styles.content}>
         <TextInput
