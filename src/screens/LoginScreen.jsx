@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 import Constants from "expo-constants";
 import { Button, Colors, Headline, TextInput } from "react-native-paper";
+import Header from '../../src/components/Header';
 
 
 const LoginScreen = () => {
@@ -28,6 +29,7 @@ const LoginScreen = () => {
   return (
     <View>
       <View style={styles.header}>
+        <Header>Header custom</Header>
         <Headline style={styles.headerText}>SpaceCraft</Headline>
       </View>
       <View style={styles.content}>
