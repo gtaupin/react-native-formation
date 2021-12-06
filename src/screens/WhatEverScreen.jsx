@@ -1,5 +1,5 @@
 import React from 'react';
-import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
+import { SafeAreaView, FlatList, StyleSheet, StatusBar, Text } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 import {useStarships} from '../hooks/useStarships'
@@ -26,7 +26,7 @@ const WhatEverScreen = () => {
   console.log('data', data)
 
   if (isLoading) {
-    return 'Loading...'
+    return <Text>'Loading...'</Text>
   } else {
     const renderItem = ({item}) => (
       <Item item={item}/>
