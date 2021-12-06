@@ -2,46 +2,14 @@ import React from 'react';
 import { SafeAreaView, FlatList, StyleSheet, StatusBar } from 'react-native';
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+import {useStarships} from '../hooks/useStarships'
 
-const DATA = [
-  {
-    key: '1',
-    title: 'Main Title - 1',
-    description: 'Main description - 1'
-  },
-  {
-    key: '2',
-    title: 'Main Title - 2',
-    description: 'Main description - 2'
-  },
-  {
-    key: '3',
-    title: 'Main Title - 3',
-    description: 'Main description - 3'
-  },
-  {
-    key: '4',
-    title: 'Main Title - 4',
-    description: 'Main description - 4'
-  },
-  {
-    key: '5',
-    title: 'Main Title - 5',
-    description: 'Main description - 5'
-  },
-  {
-    key: '6',
-    title: 'Main Title - 6',
-    description: 'Main description - 6'
-  }
-];
-
-const Item = ({ title, description }) => (
+const Item = ({ item }) => (
   <Card elevation={3}>
-    <Card.Title title={title} subtitle="Card Subtitle" left={LeftContent}/>
+    <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent}/>
     <Card.Content>
-      <Title>{description}</Title>
-      <Paragraph>Card content</Paragraph>
+      <Title>{item.starship_class}</Title>
+      <Paragraph>{item.consumables}</Paragraph>
     </Card.Content>
     <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
     <Card.Actions>
@@ -52,19 +20,28 @@ const Item = ({ title, description }) => (
 );
 
 const WhatEverScreen = () => {
-  const renderItem = ({ item }) => (
-    <Item title={item.title} description={item.description} />
-  );
+  const { isLoading, isError, data } = useStarships();
+  console.log('isLoading', isLoading)
+  console.log('isError', isError)
+  console.log('data', data)
 
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
-  );
+  if (isLoading) {
+    return 'Loading...'
+  } else {
+    const renderItem = ({item}) => (
+      <Item item={item}/>
+    );
+
+    return (
+      <SafeAreaView style={styles.container}>
+        <FlatList
+          data={data.results}
+          renderItem={renderItem}
+          keyExtractor={item => item.name}
+        />
+      </SafeAreaView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
