@@ -13,11 +13,10 @@ import { useStarships } from "../hooks/useStarships";
 import { AppRoutes } from "../navigation/AppRoutes";
 
 const Item = ({ item, open }) => (
-  <Card elevation={3}>
+  <Card elevation={3} style={styles.itemCard}>
     <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
       <Title>{item.starship_class}</Title>
-      <Paragraph>passengers : {item.passengers}</Paragraph>
     </Card.Content>
     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     <Card.Actions>
@@ -87,6 +86,9 @@ const styles = StyleSheet.create({
   },
   loader: {
     marginTop: 400,
+  },
+  itemCard: {
+    margin: 20,
   },
 });
 

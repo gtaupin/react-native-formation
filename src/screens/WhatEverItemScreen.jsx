@@ -7,7 +7,7 @@ const LeftContent = (props) => <Avatar.Icon {...props} icon="space-invaders" />;
 const WhatEverItemScreen = (props) => {
   const { item } = props.route.params;
   return (
-    <Card elevation={3}>
+    <Card elevation={3} style={styles.mainItem}>
       <Card.Title
         title={item.name}
         subtitle="Card Subtitle"
@@ -84,6 +84,9 @@ const WhatEverItemScreen = (props) => {
 };
 
 const styles = StyleSheet.create({
+  mainItem: {
+    margin: 20,
+  },
   paragraphTitle: {
     fontWeight: "bold",
   },
