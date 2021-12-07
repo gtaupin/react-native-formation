@@ -8,10 +8,11 @@ import {
 } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
 import { useStarships } from "../hooks/useStarships";
+import {AppRoutes} from "../navigation/AppRoutes";
 
-const Item = ({ item }) => (
+const Item = ({ item, open }) => (
   <Card elevation={3}>
     <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
@@ -20,13 +21,17 @@ const Item = ({ item }) => (
     </Card.Content>
     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     <Card.Actions>
-      <Button>Cancel</Button>
-      <Button>Ok</Button>
+      <Button onPress={open}>Open</Button>
     </Card.Actions>
   </Card>
 );
 
-const WhatEverScreen = () => {
+const WhatEverScreen = (props) => {
+  function openWhatEvenItemScreen(item) {
+    console.log("ABC - to open item", item);
+    props.navigation.navigate(AppRoutes.WHAT_EVER_ITEM_SCREEN, { item: item });
+  }
+
   const { isLoading, isError, data } = useStarships();
   console.log("isLoading", isLoading);
   console.log("isError", isError);
@@ -35,7 +40,9 @@ const WhatEverScreen = () => {
   if (isLoading) {
     return <Text>'Loading...'</Text>;
   } else {
-    const renderItem = ({ item }) => <Item item={item} />;
+    const renderItem = ({ item }) => (
+      <Item item={item} open={() => openWhatEvenItemScreen(item)} />
+    );
 
     return (
       <>
@@ -46,7 +53,7 @@ const WhatEverScreen = () => {
             keyExtractor={(item) => item.name}
             ListHeaderComponent={() => (
               <React.Fragment>
-                <Text style={styles.listTitle}>Hello world</Text>
+                <Text style={styles.listTitle}>My Spaceships</Text>
               </React.Fragment>
             )}
             stickyHeaderIndices={[0]}
