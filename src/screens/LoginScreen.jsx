@@ -43,7 +43,7 @@ const LoginScreen = (props) => {
     <View>
       <View style={styles.header}>
         {headerCmp()}
-        <Headline style={styles.headerText}>React Navigation</Headline>
+        <Headline style={styles.headerText}>Spacecraft</Headline>
       </View>
       <View style={styles.content}>
         <TextInput
