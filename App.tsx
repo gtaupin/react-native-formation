@@ -1,10 +1,12 @@
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { NetworkProvider } from "react-native-offline";
+
 import { Navigator } from "./src/navigation/Navigator";
 
 const queryClient = new QueryClient();
+import Offline from "./src/components/Offline";
 // import AppLayout from "./AppLayout";
-// import Offline from "./src/components/Offline";
 
 const App = () => {
   // <LoginScreen title='SpaceCraft'/>
@@ -15,7 +17,10 @@ const App = () => {
      */
   return (
     <QueryClientProvider client={queryClient}>
-      <Navigator />
+      <NetworkProvider>
+        <Navigator />
+        <Offline name="Status : " />
+      </NetworkProvider>
     </QueryClientProvider>
   );
 };
