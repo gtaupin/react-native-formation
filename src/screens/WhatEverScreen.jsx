@@ -1,18 +1,24 @@
-import React from 'react';
-import {SafeAreaView, FlatList, StyleSheet, StatusBar, Text} from 'react-native';
-import {Avatar, Button, Card, Title, Paragraph} from 'react-native-paper';
+import React from "react";
+import {
+  SafeAreaView,
+  FlatList,
+  StyleSheet,
+  StatusBar,
+  Text,
+} from "react-native";
+import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder"/>
-import {useStarships} from '../hooks/useStarships'
+const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+import { useStarships } from "../hooks/useStarships";
 
-const Item = ({item}) => (
+const Item = ({ item }) => (
   <Card elevation={3}>
-    <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent}/>
+    <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
       <Title>{item.starship_class}</Title>
       <Paragraph>{item.consumables}</Paragraph>
     </Card.Content>
-    <Card.Cover source={{uri: 'https://picsum.photos/700'}}/>
+    <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     <Card.Actions>
       <Button>Cancel</Button>
       <Button>Ok</Button>
@@ -21,17 +27,15 @@ const Item = ({item}) => (
 );
 
 const WhatEverScreen = () => {
-  const {isLoading, isError, data} = useStarships();
-  console.log('isLoading', isLoading)
-  console.log('isError', isError)
-  console.log('data', data)
+  const { isLoading, isError, data } = useStarships();
+  console.log("isLoading", isLoading);
+  console.log("isError", isError);
+  console.log("data", data);
 
   if (isLoading) {
-    return <Text>'Loading...'</Text>
+    return <Text>'Loading...'</Text>;
   } else {
-    const renderItem = ({item}) => (
-      <Item item={item}/>
-    );
+    const renderItem = ({ item }) => <Item item={item} />;
 
     return (
       <>
@@ -39,7 +43,7 @@ const WhatEverScreen = () => {
           <FlatList
             data={data.results}
             renderItem={renderItem}
-            keyExtractor={item => item.name}
+            keyExtractor={(item) => item.name}
             ListHeaderComponent={() => (
               <React.Fragment>
                 <Text style={styles.listTitle}>Hello world</Text>
@@ -51,7 +55,7 @@ const WhatEverScreen = () => {
       </>
     );
   }
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: StatusBar.currentHeight || 0,
   },
   item: {
-    backgroundColor: '#f9c2ff',
+    backgroundColor: "#f9c2ff",
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -69,11 +73,11 @@ const styles = StyleSheet.create({
   },
   listTitle: {
     padding: 20,
-    color: 'white',
-    backgroundColor: 'purple',
+    color: "white",
+    backgroundColor: "purple",
     fontSize: 20,
-    fontWeight: "bold"
-  }
+    fontWeight: "bold",
+  },
 });
 
 export default WhatEverScreen;

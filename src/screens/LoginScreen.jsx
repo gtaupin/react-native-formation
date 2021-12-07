@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Constants from "expo-constants";
 import { Button, Colors, Headline, TextInput } from "react-native-paper";
-import Header from '../../src/components/Header';
 
+import Header from "../components/Header";
 
 const LoginScreen = (props) => {
   const [email, setEmail] = useState("");
@@ -11,19 +12,16 @@ const LoginScreen = (props) => {
   const [isVisble, setIsVisible] = useState(true);
   const [notificationMessage, setNotificationMessage] = useState("");
 
-  
-  
   function handleLogin() {
-    let message
+    let message;
     if (email && password) {
-      message = 'Connected'
+      message = "Connected";
     } else {
-      message = 'Enter email and password to connect'
+      message = "Enter email and password to connect";
     }
     setNotificationMessage(message);
     console.log("login");
   }
-
 
   function navigateToTerms() {
     // navigation.navigate(AppRoutes.TERMS_SCREEN);
@@ -35,15 +33,15 @@ const LoginScreen = (props) => {
 
   function headerCmp() {
     if (notificationMessage) {
-      return <Header>{notificationMessage}</Header>
+      return <Header>{notificationMessage}</Header>;
     } else {
-      return null
+      return null;
     }
   }
   return (
     <View>
       <View style={styles.header}>
-        { headerCmp() }
+        {headerCmp()}
         <Headline style={styles.headerText}>{props.title}</Headline>
       </View>
       <View style={styles.content}>
