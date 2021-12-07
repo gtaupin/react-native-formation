@@ -25,6 +25,7 @@ const AppLayout = ({ title, children, withFooter = false }: Props) => {
   );
 };
 
+// eslint-disable-next-line import/no-default-export
 export default AppLayout;
 
 const styles = StyleSheet.create({

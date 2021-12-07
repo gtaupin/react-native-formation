@@ -18,6 +18,7 @@ const Offline = () => {
   }
 };
 
+// eslint-disable-next-line import/no-default-export
 export default Offline;
 
 const styles = StyleSheet.create({
