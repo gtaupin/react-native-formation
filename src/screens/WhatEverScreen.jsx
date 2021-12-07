@@ -6,7 +6,7 @@ import {
   StatusBar,
   Text,
 } from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { Avatar, Button, Card, Title, Paragraph, ActivityIndicator } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
 import { useStarships } from "../hooks/useStarships";
@@ -38,7 +38,7 @@ const WhatEverScreen = (props) => {
   console.log("data", data);
 
   if (isLoading) {
-    return <Text>'Loading...'</Text>;
+    return <ActivityIndicator style={styles.loader} />;
   } else {
     const renderItem = ({ item }) => (
       <Item item={item} open={() => openWhatEvenItemScreen(item)} />
@@ -84,6 +84,9 @@ const styles = StyleSheet.create({
     backgroundColor: "purple",
     fontSize: 20,
     fontWeight: "bold",
+  },
+  loader: {
+    marginTop: 400,
   },
 });
 
