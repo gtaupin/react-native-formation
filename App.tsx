@@ -13,7 +13,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <AppLayout title="Starships">
         <WhatEverScreen />
-        <Offline />
+        <Offline name="hello" />
       </AppLayout>
     </QueryClientProvider>
   );

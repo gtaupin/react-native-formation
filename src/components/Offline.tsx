@@ -5,11 +5,17 @@ import { StyleSheet, View, Text } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 import { useIsConnected } from "react-native-offline";
 
-const Offline = () => {
+interface OfflineProps {
+  name: string;
+}
+
+const Offline = (props: OfflineProps) => {
   if (!useIsConnected()) {
     return (
       <View style={styles.container}>
-        <Text style={styles.message}>Offline, reconnection in progress...</Text>
+        <Text style={styles.message}>
+          {props.name} Offline, reconnection in progress...
+        </Text>
         <ActivityIndicator color={Colors.red800} />
       </View>
     );
