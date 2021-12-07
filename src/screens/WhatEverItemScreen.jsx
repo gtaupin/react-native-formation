@@ -15,9 +15,23 @@ const WhatEverItemScreen = (props) => {
       />
       <Card.Content>
         <Title>{item.starship_class}</Title>
-        <Paragraph>{item.consumables}</Paragraph>
+        <Paragraph>model : {item.model}</Paragraph>
+        <Paragraph>passengers : {item.passengers}</Paragraph>
+        <Paragraph>starship_class : {item.starship_class}</Paragraph>
+        <Paragraph>cargo_capacity : {item.cargo_capacity}</Paragraph>
+        <Paragraph>consumables : {item.consumables}</Paragraph>
+        <Paragraph>cost_in_credits : {item.cost_in_credits}</Paragraph>
+        <Paragraph>created : {item.created}</Paragraph>
+        <Paragraph>crew : {item.crew}</Paragraph>
+        <Paragraph>edited : {item.edited}</Paragraph>
+        <Paragraph>hyperdrive_rating : {item.hyperdrive_rating}</Paragraph>
+        <Paragraph>length : {item.length}</Paragraph>
+        <Paragraph>manufacturer : {item.manufacturer}</Paragraph>
+        <Paragraph>
+          max_atmosphering_speed : {item.max_atmosphering_speed}
+        </Paragraph>
+        <Paragraph>MGLT : {item.MGLT}</Paragraph>
       </Card.Content>
-      <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     </Card>
   );
 };

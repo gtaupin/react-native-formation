@@ -17,7 +17,7 @@ const Item = ({ item, open }) => (
     <Card.Title title={item.name} subtitle="Card Subtitle" left={LeftContent} />
     <Card.Content>
       <Title>{item.starship_class}</Title>
-      <Paragraph>{item.consumables}</Paragraph>
+      <Paragraph>passengers : {item.passengers}</Paragraph>
     </Card.Content>
     <Card.Cover source={{ uri: "https://picsum.photos/700" }} />
     <Card.Actions>
