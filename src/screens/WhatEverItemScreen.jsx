@@ -15,28 +15,79 @@ const WhatEverItemScreen = (props) => {
       />
       <Card.Content>
         <Title>{item.starship_class}</Title>
-        <Paragraph>model : {item.model}</Paragraph>
-        <Paragraph>passengers : {item.passengers}</Paragraph>
-        <Paragraph>starship_class : {item.starship_class}</Paragraph>
-        <Paragraph>cargo_capacity : {item.cargo_capacity}</Paragraph>
-        <Paragraph>consumables : {item.consumables}</Paragraph>
-        <Paragraph>cost_in_credits : {item.cost_in_credits}</Paragraph>
-        <Paragraph>created : {item.created}</Paragraph>
-        <Paragraph>crew : {item.crew}</Paragraph>
-        <Paragraph>edited : {item.edited}</Paragraph>
-        <Paragraph>hyperdrive_rating : {item.hyperdrive_rating}</Paragraph>
-        <Paragraph>length : {item.length}</Paragraph>
-        <Paragraph>manufacturer : {item.manufacturer}</Paragraph>
         <Paragraph>
-          max_atmosphering_speed : {item.max_atmosphering_speed}
+          <Paragraph style={styles.paragraphTitle}>model : </Paragraph>
+          {item.model}
         </Paragraph>
-        <Paragraph>MGLT : {item.MGLT}</Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>passengers : </Paragraph>
+          {item.passengers}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>starship_class : </Paragraph>
+          {item.starship_class}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>cargo_capacity : </Paragraph>
+          {item.cargo_capacity}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>consumables : </Paragraph>
+          {item.consumables}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>
+            cost_in_credits :{" "}
+          </Paragraph>
+          {item.cost_in_credits}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>created : </Paragraph>
+          {item.created}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>crew : </Paragraph>
+          {item.crew}
+        </Paragraph>
+
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>edited : </Paragraph>
+          {item.edited}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>
+            hyperdrive_rating :{" "}
+          </Paragraph>
+          {item.hyperdrive_rating}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>length : </Paragraph>
+          {item.length}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>manufacturer : </Paragraph>
+          {item.manufacturer}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>
+            max_atmosphering_speed :{" "}
+          </Paragraph>
+          {item.max_atmosphering_speed}
+        </Paragraph>
+        <Paragraph>
+          <Paragraph style={styles.paragraphTitle}>MGLT : </Paragraph>
+          {item.MGLT}
+        </Paragraph>
       </Card.Content>
     </Card>
   );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  paragraphTitle: {
+    fontWeight: "bold",
+  },
+});
 
 // eslint-disable-next-line import/no-default-export
 export default WhatEverItemScreen;
