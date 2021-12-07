@@ -10,7 +10,7 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
 import { useStarships } from "../hooks/useStarships";
-import {AppRoutes} from "../navigation/AppRoutes";
+import { AppRoutes } from "../navigation/AppRoutes";
 
 const Item = ({ item, open }) => (
   <Card elevation={3}>
