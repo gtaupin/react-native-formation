@@ -3,11 +3,16 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { Navigator } from "./src/navigation/Navigator";
 
 const queryClient = new QueryClient();
-import AppLayout from "./AppLayout";
-import Offline from "./src/components/Offline";
+// import AppLayout from "./AppLayout";
+// import Offline from "./src/components/Offline";
 
 const App = () => {
   // <LoginScreen title='SpaceCraft'/>
+  /*
+    <AppLayout title="Starships">
+        <Offline name="hello" />
+      </AppLayout>
+     */
   return (
     <QueryClientProvider client={queryClient}>
       <Navigator />
