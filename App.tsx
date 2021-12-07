@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { NetworkProvider } from "react-native-offline";
 
 import { Navigator } from "./src/navigation/Navigator";
-
 const queryClient = new QueryClient();
 import Offline from "./src/components/Offline";
 // import AppLayout from "./AppLayout";
