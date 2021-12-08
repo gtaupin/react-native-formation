@@ -1,6 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { DefaultTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 
 import WhatEverScreen from "../screens/WhatEverScreen";
 import WhatEverItemScreen from "../screens/WhatEverItemScreen";
@@ -14,7 +14,7 @@ export const WhatEverNavigator = () => {
       screenOptions={{
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
-        headerTintColor: DefaultTheme.colors.primary,
+        headerTintColor: useTheme().colors.primary,
       }}
     >
       <Stack.Screen

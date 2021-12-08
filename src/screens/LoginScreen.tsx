@@ -7,7 +7,7 @@ import {
   Colors,
   Headline,
   TextInput,
-  DefaultTheme,
+  useTheme,
 } from "react-native-paper";
 
 import { AppRoutes } from "../navigation/AppRoutes";
@@ -52,7 +52,15 @@ const LoginScreen = (props) => {
   }
   return (
     <View>
-      <View style={styles.header}>
+      <View
+        style={{
+          paddingTop: Constants.statusBarHeight,
+          alignItems: "center",
+          justifyContent: "center",
+          height: 256,
+          backgroundColor: useTheme().colors.primary,
+        }}
+      >
         {headerCmp()}
         <Headline style={styles.headerText}>Spacecraft</Headline>
       </View>
@@ -76,7 +84,11 @@ const LoginScreen = (props) => {
         />
         <Button
           onPress={handleLogin}
-          style={styles.submitButton}
+          style={{
+            marginVertical: 32,
+            marginHorizontal: 16,
+            backgroundColor: useTheme().colors.primary,
+          }}
           mode="contained"
         >
           Login
@@ -95,22 +107,10 @@ const styles = StyleSheet.create({
   content: {
     padding: 16,
   },
-  header: {
-    paddingTop: Constants.statusBarHeight,
-    alignItems: "center",
-    justifyContent: "center",
-    height: 256,
-    backgroundColor: DefaultTheme.colors.primary,
-  },
   headerText: {
     color: Colors.white,
     fontWeight: "bold",
     textTransform: "uppercase",
-  },
-  submitButton: {
-    marginVertical: 32,
-    marginHorizontal: 16,
-    backgroundColor: DefaultTheme.colors.primary,
   },
   tocText: {
     textAlign: "center",

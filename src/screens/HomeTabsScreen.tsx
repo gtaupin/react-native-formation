@@ -2,7 +2,7 @@ import * as React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { DefaultTheme } from "react-native-paper";
+import { useTheme } from "react-native-paper";
 
 import { AppTabs } from "../navigation/AppTabs";
 import { WhatEverNavigator } from "../navigation/WhatEverNavigator";
@@ -15,7 +15,7 @@ const HomeTabsScreen = () => {
     <Tab.Navigator
       initialRouteName="Feed"
       screenOptions={{
-        tabBarActiveTintColor: DefaultTheme.colors.primary,
+        tabBarActiveTintColor: useTheme().colors.primary,
       }}
     >
       <Tab.Screen

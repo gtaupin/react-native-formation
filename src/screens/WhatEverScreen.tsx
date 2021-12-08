@@ -12,7 +12,7 @@ import {
   Card,
   Title,
   ActivityIndicator,
-  DefaultTheme,
+  useTheme,
 } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
@@ -58,7 +58,17 @@ const WhatEverScreen = (props) => {
             keyExtractor={(item) => item.name}
             ListHeaderComponent={() => (
               <React.Fragment>
-                <Text style={styles.listTitle}>My Spaceships</Text>
+                <Text
+                  style={{
+                    padding: 20,
+                    color: "white",
+                    backgroundColor: useTheme().colors.primary,
+                    fontSize: 20,
+                    fontWeight: "bold",
+                  }}
+                >
+                  My Spaceships
+                </Text>
               </React.Fragment>
             )}
             stickyHeaderIndices={[0]}
@@ -83,25 +93,19 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
   },
-  listTitle: {
-    padding: 20,
-    color: "white",
-    backgroundColor: DefaultTheme.colors.primary,
-    fontSize: 20,
-    fontWeight: "bold",
-  },
   loader: {
-    position: 'absolute',
+    position: "absolute",
     left: 0,
     right: 0,
     top: 0,
     bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center'
+    alignItems: "center",
+    justifyContent: "center",
   },
   itemCard: {
     margin: 20,
   },
 });
 
+// eslint-disable-next-line import/no-default-export
 export default WhatEverScreen;
