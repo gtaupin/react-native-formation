@@ -19,6 +19,9 @@ import tieFighterImg from "../../assets/tie-fighter.png";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import xWingImg from "../../assets/x-wing.png";
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import pinkFlagImg from "../../assets/flag-pink.png";
 const screen = Dimensions.get("window");
 
 const ASPECT_RATIO = screen.width / screen.height;
@@ -48,6 +51,12 @@ const MapScreen = (props: MapScreenProps) => {
       longitudeDelta: LONGITUDE_DELTA,
     })
   );
+  const [currentCoordinate, setCurrentCoordinate] = useState({
+    latitude: LATITUDE,
+    longitude: LONGITUDE,
+    latitudeDelta: LATITUDE_DELTA,
+    longitudeDelta: LONGITUDE_DELTA,
+  });
   const [marker, setMarker] = useState(null);
   const [marker2, setMarker2] = useState(null);
   const [location, setLocation] = useState(null);
@@ -75,6 +84,20 @@ const MapScreen = (props: MapScreenProps) => {
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
       });
+      setCurrentCoordinate(
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        new AnimatedRegion({
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          latitude: locationTmp.coords.latitude,
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          longitude: locationTmp.coords.longitude,
+          latitudeDelta: LATITUDE_DELTA,
+          longitudeDelta: LONGITUDE_DELTA,
+        })
+      );
     })();
   }, []);
   function animate() {
@@ -145,6 +168,14 @@ const MapScreen = (props: MapScreenProps) => {
         // @ts-ignore
         region={userRegion}
       >
+        <MarkerAnimated
+          key="marker-0"
+          image={pinkFlagImg}
+          title="Ma position"
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          // @ts-ignore
+          coordinate={currentCoordinate}
+        />
         <MarkerAnimated
           key="marker-1"
           ref={(markerTmp) => {
