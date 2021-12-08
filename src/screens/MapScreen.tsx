@@ -178,7 +178,7 @@ const MapScreen = (props: MapScreenProps) => {
       >
         <MarkerAnimated
           key="marker-0"
-          // image={pinkFlagImg}
+          image={pinkFlagImg}
           title="Ma position"
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
