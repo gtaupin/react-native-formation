@@ -15,7 +15,7 @@ import * as Location from "expo-location";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
-import tieFighterImg from "../../assets/tie-fightera.png";
+import tieFighterImg from "../../assets/tie-fighter.png";
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import xWingImg from "../../assets/x-wing.png";
