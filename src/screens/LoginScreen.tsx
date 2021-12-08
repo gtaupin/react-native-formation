@@ -16,7 +16,7 @@ const LoginScreen = (props) => {
   function handleLogin() {
     let message;
     if (email && password) {
-      if (email === "admin" && password === "admin") {
+      if (email.toLowerCase() === "admin" && password === "admin") {
         message = "Connected";
         props.navigation.navigate(AppRoutes.HOME_TABS_SCREEN);
       } else {
