@@ -2,7 +2,13 @@ import React, { useState } from "react";
 import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Constants from "expo-constants";
-import { Button, Colors, Headline, TextInput } from "react-native-paper";
+import {
+  Button,
+  Colors,
+  Headline,
+  TextInput,
+  DefaultTheme,
+} from "react-native-paper";
 
 import { AppRoutes } from "../navigation/AppRoutes";
 import Header from "../components/Header";
@@ -94,7 +100,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: 256,
-    backgroundColor: Colors.purple500,
+    backgroundColor: DefaultTheme.colors.primary,
   },
   headerText: {
     color: Colors.white,
@@ -104,7 +110,7 @@ const styles = StyleSheet.create({
   submitButton: {
     marginVertical: 32,
     marginHorizontal: 16,
-    backgroundColor: Colors.purple500,
+    backgroundColor: DefaultTheme.colors.primary,
   },
   tocText: {
     textAlign: "center",

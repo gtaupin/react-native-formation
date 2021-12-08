@@ -6,7 +6,14 @@ import {
   StatusBar,
   Text,
 } from "react-native";
-import { Avatar, Button, Card, Title, ActivityIndicator } from "react-native-paper";
+import {
+  Avatar,
+  Button,
+  Card,
+  Title,
+  ActivityIndicator,
+  DefaultTheme,
+} from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
 import { useStarships } from "../hooks/useStarships";
@@ -79,7 +86,7 @@ const styles = StyleSheet.create({
   listTitle: {
     padding: 20,
     color: "white",
-    backgroundColor: "purple",
+    backgroundColor: DefaultTheme.colors.primary,
     fontSize: 20,
     fontWeight: "bold",
   },

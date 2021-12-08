@@ -1,5 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
+import { DefaultTheme } from "react-native-paper";
 
 import WhatEverScreen from "../screens/WhatEverScreen";
 import WhatEverItemScreen from "../screens/WhatEverItemScreen";
@@ -9,7 +10,13 @@ const Stack = createStackNavigator();
 import { AppRoutes } from "./AppRoutes";
 export const WhatEverNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        headerTintColor: DefaultTheme.colors.primary,
+      }}
+    >
       <Stack.Screen
         name={AppRoutes.WHAT_EVER_SCREEN}
         component={WhatEverScreen}
