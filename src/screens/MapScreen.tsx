@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -11,6 +11,7 @@ import {
 // @ts-ignore
 import type { ProviderPropType } from "react-native-maps";
 import MapView, { AnimatedRegion, MarkerAnimated } from "react-native-maps";
+import * as Location from "expo-location";
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
@@ -35,25 +36,65 @@ const MapScreen = (props: MapScreenProps) => {
     new AnimatedRegion({
       latitude: LATITUDE,
       longitude: LONGITUDE,
-      latitudeDelta: 0,
-      longitudeDelta: 0,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
     })
   );
   const [coordinate2] = useState(
     new AnimatedRegion({
       latitude: LATITUDE,
       longitude: LONGITUDE,
-      latitudeDelta: 0,
-      longitudeDelta: 0,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
     })
   );
   const [marker, setMarker] = useState(null);
   const [marker2, setMarker2] = useState(null);
-  animate();
+  const [location, setLocation] = useState(null);
+  const [userRegion, setUserRegion] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        console.error("Permission to access location was denied");
+        return;
+      }
+
+      const locationTmp = await Location.getCurrentPositionAsync({});
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      setLocation(locationTmp);
+      setUserRegion({
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        latitude: locationTmp.coords.latitude,
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        longitude: locationTmp.coords.longitude,
+        latitudeDelta: LATITUDE_DELTA,
+        longitudeDelta: LONGITUDE_DELTA,
+      });
+    })();
+  }, []);
   function animate() {
+    if (location) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+    }
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const currentLatitude = location ? location.coords.latitude : LATITUDE;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    const currentLongitude = location ? location.coords.longitude : LONGITUDE;
+    /* PART 1 */
     const newCoordinate = {
-      latitude: LATITUDE + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
-      longitude: LONGITUDE + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2),
+      latitude: currentLatitude + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
+      longitude:
+        currentLongitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2),
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
     };
 
     if (Platform.OS === "android") {
@@ -67,9 +108,13 @@ const MapScreen = (props: MapScreenProps) => {
       coordinate.timing({ ...newCoordinate, useNativeDriver: true }).start();
     }
 
+    /* PART 2 */
     const newCoordinate2 = {
-      latitude: LATITUDE + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
-      longitude: LONGITUDE + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2),
+      latitude: currentLatitude + (Math.random() - 0.5) * (LATITUDE_DELTA / 2),
+      longitude:
+        currentLongitude + (Math.random() - 0.5) * (LONGITUDE_DELTA / 2),
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
     };
 
     if (Platform.OS === "android") {
@@ -84,6 +129,7 @@ const MapScreen = (props: MapScreenProps) => {
     }
   }
 
+  animate();
   return (
     <View style={styles.container}>
       <MapView
@@ -95,6 +141,9 @@ const MapScreen = (props: MapScreenProps) => {
           latitudeDelta: LATITUDE_DELTA,
           longitudeDelta: LONGITUDE_DELTA,
         }}
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-ignore
+        region={userRegion}
       >
         <MarkerAnimated
           key="marker-1"
@@ -109,10 +158,10 @@ const MapScreen = (props: MapScreenProps) => {
         />
         <MarkerAnimated
           key="marker-2"
-          ref={(markerTmp) => {
+          ref={(markerTmp2) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
-            setMarker2(markerTmp);
+            setMarker2(markerTmp2);
           }}
           image={tieFighterImg}
           title="Tie Fighter"
@@ -124,13 +173,13 @@ const MapScreen = (props: MapScreenProps) => {
           onPress={() => animate()}
           style={[styles.bubble, styles.button]}
         >
-          <Text>Refresh positions</Text>
+          <Text>Refresh Spaceships Position</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 };
-
+//<Text>Location : {JSON.stringify(location)}</Text>
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
