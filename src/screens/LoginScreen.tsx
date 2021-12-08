@@ -16,8 +16,12 @@ const LoginScreen = (props) => {
   function handleLogin() {
     let message;
     if (email && password) {
-      message = "Connected";
-      props.navigation.navigate(AppRoutes.HOME_TABS_SCREEN);
+      if (email === "admin" && password === "admin") {
+        message = "Connected";
+        props.navigation.navigate(AppRoutes.HOME_TABS_SCREEN);
+      } else {
+        message = "User not found";
+      }
     } else {
       message = "Enter email and password to connect";
     }

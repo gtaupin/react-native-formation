@@ -6,7 +6,7 @@ import {
   StatusBar,
   Text,
 } from "react-native";
-import { Avatar, Button, Card, Title, Paragraph, ActivityIndicator } from "react-native-paper";
+import { Avatar, Button, Card, Title, ActivityIndicator } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-station" />;
 import { useStarships } from "../hooks/useStarships";
@@ -27,7 +27,6 @@ const Item = ({ item, open }) => (
 
 const WhatEverScreen = (props) => {
   function openWhatEvenItemScreen(item) {
-    console.log("ABC - to open item", item);
     props.navigation.navigate(AppRoutes.WHAT_EVER_ITEM_SCREEN, { item: item });
   }
 
@@ -85,7 +84,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   loader: {
-    marginTop: 400,
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   itemCard: {
     margin: 20,
