@@ -3,6 +3,7 @@ import {
   StyleSheet,
   View,
   Text,
+  Image,
   Dimensions,
   TouchableOpacity,
   Platform,
@@ -177,35 +178,53 @@ const MapScreen = (props: MapScreenProps) => {
         region={userRegion}
       >
         <MarkerAnimated
+          style={styles.marker}
           key="marker-0"
-          image={pinkFlagImg}
           title="Ma position"
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
           coordinate={currentCoordinate}
-        />
+        >
+          <Image
+            source={pinkFlagImg}
+            style={{ width: 130, height: 130, right: 45, bottom: 45 }}
+            resizeMode="contain"
+          />
+        </MarkerAnimated>
         <MarkerAnimated
+          style={styles.marker}
           key="marker-1"
           ref={(markerTmp) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             setMarker(markerTmp);
           }}
-          image={xWingImg}
           title="X-Wing"
           coordinate={coordinate}
-        />
+        >
+          <Image
+            source={xWingImg}
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+          />
+        </MarkerAnimated>
         <MarkerAnimated
+          style={styles.marker}
           key="marker-2"
           ref={(markerTmp2) => {
             // eslint-disable-next-line @typescript-eslint/ban-ts-comment
             // @ts-ignore
             setMarker2(markerTmp2);
           }}
-          image={tieFighterImg}
           title="Tie Fighter"
           coordinate={coordinate2}
-        />
+        >
+          <Image
+            source={tieFighterImg}
+            style={{ width: 100, height: 100 }}
+            resizeMode="contain"
+          />
+        </MarkerAnimated>
       </MapView>
       <View style={styles.buttonContainer}>
         <TouchableOpacity
@@ -220,6 +239,10 @@ const MapScreen = (props: MapScreenProps) => {
 };
 //<Text>Location : {JSON.stringify(location)}</Text>
 const styles = StyleSheet.create({
+  marker: {
+    width: 50,
+    height: 50,
+  },
   container: {
     ...StyleSheet.absoluteFillObject,
     justifyContent: "flex-end",
