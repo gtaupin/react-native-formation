@@ -70,11 +70,28 @@ const MapScreen = (props: MapScreenProps) => {
         return;
       }
 
-      const locationTmp = await Location.getCurrentPositionAsync({});
+      await updateCurrentLocation();
+    })();
+  }, []);
+  async function updateCurrentLocation() {
+    const locationTmp = await Location.getCurrentPositionAsync({});
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    setLocation(locationTmp);
+    setUserRegion({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      setLocation(locationTmp);
-      setUserRegion({
+      latitude: locationTmp.coords.latitude,
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      longitude: locationTmp.coords.longitude,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
+    });
+    setCurrentCoordinate(
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      new AnimatedRegion({
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         latitude: locationTmp.coords.latitude,
@@ -83,23 +100,9 @@ const MapScreen = (props: MapScreenProps) => {
         longitude: locationTmp.coords.longitude,
         latitudeDelta: LATITUDE_DELTA,
         longitudeDelta: LONGITUDE_DELTA,
-      });
-      setCurrentCoordinate(
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
-        new AnimatedRegion({
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          latitude: locationTmp.coords.latitude,
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
-          longitude: locationTmp.coords.longitude,
-          latitudeDelta: LATITUDE_DELTA,
-          longitudeDelta: LONGITUDE_DELTA,
-        })
-      );
-    })();
-  }, []);
+      })
+    );
+  }
   function animate() {
     if (location) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -158,6 +161,11 @@ const MapScreen = (props: MapScreenProps) => {
       <MapView
         provider={props.provider}
         style={styles.map}
+        showsUserLocation={true}
+        followsUserLocation={true}
+        onUserLocationChange={() => {
+          updateCurrentLocation();
+        }}
         initialRegion={{
           latitude: LATITUDE,
           longitude: LONGITUDE,
@@ -170,7 +178,7 @@ const MapScreen = (props: MapScreenProps) => {
       >
         <MarkerAnimated
           key="marker-0"
-          image={pinkFlagImg}
+          // image={pinkFlagImg}
           title="Ma position"
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           // @ts-ignore
