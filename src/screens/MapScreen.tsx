@@ -124,7 +124,7 @@ const MapScreen = (props: MapScreenProps) => {
           onPress={() => animate()}
           style={[styles.bubble, styles.button]}
         >
-          <Text>Refresh position</Text>
+          <Text>Refresh positions</Text>
         </TouchableOpacity>
       </View>
     </View>
