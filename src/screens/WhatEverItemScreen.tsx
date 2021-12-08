@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, StatusBar } from "react-native";
+import { StyleSheet } from "react-native";
 import { Avatar, Card, Title, Paragraph } from "react-native-paper";
 
 const LeftContent = (props) => <Avatar.Icon {...props} icon="space-invaders" />;

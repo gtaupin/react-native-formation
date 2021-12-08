@@ -3,6 +3,7 @@ import { StyleSheet, TouchableOpacity, Text, View } from "react-native";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import Constants from "expo-constants";
 import { Button, Colors, Headline, TextInput } from "react-native-paper";
+
 import { AppRoutes } from "../navigation/AppRoutes";
 import Header from "../components/Header";
 
@@ -16,7 +17,7 @@ const LoginScreen = (props) => {
     let message;
     if (email && password) {
       message = "Connected";
-      props.navigation.navigate(AppRoutes.WHAT_EVER_SCREEN);
+      props.navigation.navigate(AppRoutes.HOME_TABS_SCREEN);
     } else {
       message = "Enter email and password to connect";
     }
